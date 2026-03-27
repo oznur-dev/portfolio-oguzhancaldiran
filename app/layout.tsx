@@ -15,23 +15,23 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Oğuzhan Çaldıran - Dijital İçerik & Sosyal Medya Uzmanı",
   description:
-    "Markalara otantik bağlantılar kurma ve veri odaklı içerik stratejileriyle üssel büyüme sağlama konusunda uzman dijital pazarlama danışmanı.",
+    "Video prodüksiyon, sosyal medya yönetimi, web tasarım ve performans pazarlama alanlarında uçtan uca hizmet sunarak markaların sürdürülebilir büyümesine katkı sağlar.",
   keywords:
-    "sosyal medya pazarlama, içerik stratejisi, marka büyümesi, dijital pazarlama, sosyal medya danışmanı, video prodüksiyon, web tasarım",
+    "video prodüksiyon, video kurgu, sosyal medya yönetimi, içerik stratejisi, web tasarım, performans pazarlama, dijital içerik, marka büyümesi",
   authors: [{ name: "Oğuzhan Çaldıran" }],
   creator: "Oğuzhan Çaldıran",
   metadataBase: new URL("https://oguzhancaldiran.com"),
   openGraph: {
     title: "Oğuzhan Çaldıran - Dijital İçerik & Sosyal Medya Uzmanı",
     description:
-      "Markalara otantik bağlantılar kurma ve veri odaklı içerik stratejileriyle üssel büyüme sağlama konusunda uzman dijital pazarlama danışmanı.",
+      "Video prodüksiyon, sosyal medya yönetimi, web tasarım ve performans pazarlama alanlarında uçtan uca hizmet sunarak markaların sürdürülebilir büyümesine katkı sağlar.",
     url: "https://oguzhancaldiran.com",
     siteName: "Oğuzhan Çaldıran",
     images: [
       {
-        url: "/og-image.jpg",
-        width: 1200,
-        height: 630,
+        url: "/favicon.png",
+        width: 512,
+        height: 512,
         alt: "Oğuzhan Çaldıran - Dijital İçerik & Sosyal Medya Uzmanı",
       },
     ],
@@ -42,8 +42,8 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Oğuzhan Çaldıran - Dijital İçerik & Sosyal Medya Uzmanı",
     description:
-      "Markalara otantik bağlantılar kurma ve veri odaklı içerik stratejileriyle üssel büyüme sağlama konusunda uzman dijital pazarlama danışmanı.",
-    images: ["/og-image.jpg"],
+      "Video prodüksiyon, sosyal medya yönetimi, web tasarım ve performans pazarlama alanlarında uçtan uca hizmet sunarak markaların sürdürülebilir büyümesine katkı sağlar.",
+    images: ["/favicon.png"],
     creator: "@oguzhancaldiran",
   },
   robots: {
@@ -66,7 +66,7 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
+      lang="tr"
       className={`${geistSans.variable} ${geistMono.variable} scroll-smooth antialiased`}
     >
       <body className="min-h-screen bg-gray-950 text-white overflow-x-hidden">
