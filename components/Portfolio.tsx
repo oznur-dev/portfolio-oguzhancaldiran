@@ -9,7 +9,7 @@ const studyVideos = [
   { src: "/assets/studies/vid-1.mp4" },
   { src: "/assets/studies/vid-2.mp4" },
   { src: "/assets/studies/vid-3.mp4" },
-  { src: "/assets/studies/vid-4.MP4" },
+  // { src: "/assets/studies/vid-4.MP4" },
   { src: "/assets/studies/vid-5.mp4" },
   { src: "/assets/studies/Yol.mp4" },
 ];
