@@ -16,10 +16,10 @@ import {
 } from "lucide-react";
 
 const certificates = [
-  { src: "/assets/sertificates/stf.png", title: "Sertifika 4" },
-  { src: "/assets/sertificates/stf-1.jpg", title: "Sertifika 1" },
-  { src: "/assets/sertificates/stf-2.PNG", title: "Sertifika 2" },
-  { src: "/assets/sertificates/stf-4.PNG", title: "Sertifika 3" },
+  { src: "/assets/sertificates/stf.png" },
+  { src: "/assets/sertificates/stf-1.jpg" },
+  { src: "/assets/sertificates/stf-2.PNG" },
+  { src: "/assets/sertificates/stf-4.PNG" },
 ];
 
 export function About() {
@@ -305,12 +305,12 @@ export function About() {
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={cert.src}
-                  alt={cert.title}
+                  // alt={cert.title}
                   className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-colors duration-300 flex items-end p-3">
                   <span className="text-xs font-medium text-white/80">
-                    {cert.title}
+                    {/* {cert.title} */}
                   </span>
                 </div>
               </motion.button>
@@ -346,7 +346,7 @@ export function About() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={certificates[lightboxIndex].src}
-              alt={certificates[lightboxIndex].title}
+              // alt={certificates[lightboxIndex].title}
               className="w-full rounded-xl max-h-[80vh] object-contain"
             />
 

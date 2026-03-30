@@ -223,7 +223,7 @@ export function Hero() {
         >
           <motion.button
             onClick={scrollToAbout}
-            className="flex flex-col items-center gap-2 text-gray-400 hover:text-white transition-colors"
+            className="flex flex-col pb-2 items-center gap-2 text-gray-400 hover:text-white transition-colors"
             animate={{ y: [0, 10, 0] }}
             transition={{ duration: 2, repeat: Infinity }}
           >
