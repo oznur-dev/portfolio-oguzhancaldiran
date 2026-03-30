@@ -157,15 +157,17 @@ export function Navigation() {
                     {item.label}
                   </motion.button>
                 ))}
-                <motion.button
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: navItems.length * 0.1 }}
-                  onClick={() => scrollToSection("contact")}
-                  className="block w-full mt-4 mx-4 bg-linear-to-r from-indigo-500 to-purple-600 text-white py-3 px-4 rounded-lg font-medium text-center"
-                >
-                  İletişime Geç
-                </motion.button>
+                <div className="px-4 mt-4">
+                  <motion.button
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: navItems.length * 0.1 }}
+                    onClick={() => scrollToSection("contact")}
+                    className="block w-full bg-linear-to-r from-indigo-500 to-purple-600 text-white py-3 px-4 rounded-lg font-medium text-center"
+                  >
+                    İletişime Geç
+                  </motion.button>
+                </div>
               </div>
             </motion.div>
           )}
