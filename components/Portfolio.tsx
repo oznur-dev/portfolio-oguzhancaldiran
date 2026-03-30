@@ -339,7 +339,7 @@ export function Portfolio() {
                   <button
                     key={video.src}
                     onClick={() => setSelectedVideo(video.src)}
-                    className="group relative flex-none w-72 sm:w-64 aspect-[9/16] sm:aspect-video rounded-xl overflow-hidden glass border border-white/10 hover:border-indigo-500/60 transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
+                    className="group relative flex-none w-72 sm:w-64 h-[400px] sm:h-auto sm:aspect-video rounded-xl overflow-hidden glass border border-white/10 hover:border-indigo-500/60 transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
                   >
                     <video
                       src={video.src}
