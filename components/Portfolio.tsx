@@ -2,16 +2,22 @@
 
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
+import Image from "next/image";
 import { useRef, useState, useEffect } from "react";
 import { ArrowLeft, ArrowRight, Play, X } from "lucide-react";
 
-const studyVideos = [
-  { src: "/assets/studies/vid-1.mp4" },
-  { src: "/assets/studies/vid-2.mp4" },
-  { src: "/assets/studies/vid-3.mp4" },
-  // { src: "/assets/studies/vid-4.MP4" },
-  { src: "/assets/studies/vid-5.mp4" },
-  { src: "/assets/studies/Yol.mp4" },
+type StudyItem = { type: "video"; src: string } | { type: "image"; src: string };
+
+const studyItems: StudyItem[] = [
+  { type: "video", src: "/assets/studies/showreel.mp4" },
+  { type: "video", src: "/assets/studies/vid-1.mp4" },
+  { type: "video", src: "/assets/studies/vid-2.mp4" },
+  { type: "video", src: "/assets/studies/vid-3.mp4" },
+  // { type: "video", src: "/assets/studies/vid-4.MP4" },
+  { type: "video", src: "/assets/studies/vid-5.mp4" },
+  { type: "video", src: "/assets/studies/Yol.mp4" },
+  { type: "image", src: "/assets/studies/beauty.jpeg" },
+  { type: "image", src: "/assets/studies/beauty-2.jpeg" },
 ];
 
 export function Portfolio() {
@@ -19,7 +25,7 @@ export function Portfolio() {
   const carouselRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, amount: 0.3 });
   const [selectedCase, setSelectedCase] = useState(0);
-  const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
+  const [selectedMedia, setSelectedMedia] = useState<StudyItem | null>(null);
 
   const scrollCarousel = (dir: "left" | "right") => {
     if (!carouselRef.current) return;
@@ -31,7 +37,7 @@ export function Portfolio() {
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setSelectedVideo(null);
+      if (e.key === "Escape") setSelectedMedia(null);
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
@@ -335,29 +341,35 @@ export function Portfolio() {
                 ref={carouselRef}
                 className="flex gap-5 overflow-x-auto hide-scrollbar px-6"
               >
-                {studyVideos.map((video) => (
+                {studyItems.map((item) => (
                   <button
-                    key={video.src}
-                    onClick={() => setSelectedVideo(video.src)}
-                    className="group relative flex-none w-72 sm:w-64 h-[400px] sm:h-auto sm:aspect-video rounded-xl overflow-hidden glass border border-white/10 hover:border-indigo-500/60 transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
+                    key={item.src}
+                    onClick={() => setSelectedMedia(item)}
+                    className="group relative flex-none w-72 aspect-video rounded-xl overflow-hidden bg-[#0d0d1a] border border-white/10 hover:border-indigo-500/60 transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
                   >
-                    <video
-                      src={video.src}
-                      preload="metadata"
-                      className="w-full h-full object-cover"
-                      muted
-                    />
-                    {/* Play overlay */}
+                    {item.type === "video" ? (
+                      <video
+                        src={item.src}
+                        preload="metadata"
+                        className="w-full h-full object-contain"
+                        muted
+                      />
+                    ) : (
+                      <Image
+                        src={item.src}
+                        alt=""
+                        fill
+                        className="object-contain"
+                        sizes="288px"
+                      />
+                    )}
+                    {/* Overlay */}
                     <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
-                      <div className="w-12 h-12 rounded-full bg-white/20 group-hover:bg-indigo-500/80 backdrop-blur-sm flex items-center justify-center transition-all duration-300 group-hover:scale-110">
-                        <Play size={20} className="text-white ml-0.5" />
-                      </div>
-                    </div>
-                    {/* Title */}
-                    <div className="absolute bottom-0 inset-x-0 px-3 py-2 bg-linear-to-t from-black/70 to-transparent">
-                      <p className="text-sm font-medium text-white truncate">
-                        {/* {video.title} */}
-                      </p>
+                      {item.type === "video" && (
+                        <div className="w-12 h-12 rounded-full bg-white/20 group-hover:bg-indigo-500/80 backdrop-blur-sm flex items-center justify-center transition-all duration-300 group-hover:scale-110">
+                          <Play size={20} className="text-white ml-0.5" />
+                        </div>
+                      )}
                     </div>
                   </button>
                 ))}
@@ -376,14 +388,14 @@ export function Portfolio() {
         </motion.div>
       </div>
 
-      {/* Video Modal */}
-      {selectedVideo && (
+      {/* Media Modal */}
+      {selectedMedia && (
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 backdrop-blur-sm p-4"
-          onClick={() => setSelectedVideo(null)}
+          onClick={() => setSelectedMedia(null)}
         >
           <motion.div
             initial={{ scale: 0.9, opacity: 0 }}
@@ -394,18 +406,30 @@ export function Portfolio() {
             onClick={(e) => e.stopPropagation()}
           >
             <button
-              onClick={() => setSelectedVideo(null)}
+              onClick={() => setSelectedMedia(null)}
               className="absolute -top-10 right-0 p-2 rounded-full glass border border-white/20 hover:border-white/50 text-gray-300 hover:text-white transition-all duration-200"
               aria-label="Kapat"
             >
               <X size={20} />
             </button>
-            <video
-              src={selectedVideo}
-              controls
-              autoPlay
-              className="w-full rounded-xl max-h-[80vh]"
-            />
+            {selectedMedia.type === "video" ? (
+              <video
+                src={selectedMedia.src}
+                controls
+                autoPlay
+                className="w-full rounded-xl max-h-[80vh]"
+              />
+            ) : (
+              <div className="relative w-full rounded-xl overflow-hidden max-h-[80vh] flex items-center justify-center">
+                <Image
+                  src={selectedMedia.src}
+                  alt=""
+                  width={1200}
+                  height={900}
+                  className="object-contain rounded-xl max-h-[80vh] w-auto h-auto"
+                />
+              </div>
+            )}
           </motion.div>
         </motion.div>
       )}
