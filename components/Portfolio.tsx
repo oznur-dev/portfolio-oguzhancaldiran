@@ -13,8 +13,9 @@ const studyItems: StudyItem[] = [
   { type: "video", src: "/assets/studies/vid-1.mp4" },
   { type: "video", src: "/assets/studies/vid-2.mp4" },
   { type: "video", src: "/assets/studies/vid-3.mp4" },
-  // { type: "video", src: "/assets/studies/vid-4.MP4" },
+  { type: "video", src: "/assets/studies/vid-4.mp4" },
   { type: "video", src: "/assets/studies/vid-5.mp4" },
+  { type: "video", src: "/assets/studies/vid-6.mp4" },
   { type: "video", src: "/assets/studies/Yol.mp4" },
   { type: "image", src: "/assets/studies/beauty.jpeg" },
   { type: "image", src: "/assets/studies/beauty-2.jpeg" },
@@ -349,7 +350,7 @@ export function Portfolio() {
                   >
                     {item.type === "video" ? (
                       <video
-                        src={item.src}
+                        src={item.src + "#t=5"}
                         preload="metadata"
                         className="w-full h-full object-contain"
                         muted
