@@ -24,7 +24,7 @@ const studyItems: StudyItem[] = [
 export function Portfolio() {
   const ref = useRef(null);
   const carouselRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, amount: 0.3 });
+  const isInView = useInView(ref, { once: true, amount: 0 });
   const [selectedCase, setSelectedCase] = useState(0);
   const [selectedMedia, setSelectedMedia] = useState<StudyItem | null>(null);
 

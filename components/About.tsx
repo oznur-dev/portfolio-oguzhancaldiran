@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
@@ -18,13 +19,13 @@ import {
 const certificates = [
   { src: "/assets/sertificates/stf.png" },
   { src: "/assets/sertificates/stf-1.jpg" },
-  { src: "/assets/sertificates/stf-2.PNG" },
-  { src: "/assets/sertificates/stf-4.PNG" },
+  { src: "/assets/sertificates/stf-2.png" },
+  { src: "/assets/sertificates/stf-4.png" },
 ];
 
 export function About() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.3 });
+  const isInView = useInView(ref, { once: true, amount: 0 });
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
   useEffect(() => {
@@ -302,17 +303,14 @@ export function About() {
                 whileHover={{ y: -4 }}
                 whileTap={{ scale: 0.97 }}
               >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
+                <Image
                   src={cert.src}
-                  // alt={cert.title}
-                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  alt={`Sertifika ${index + 1}`}
+                  fill
+                  sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, 25vw"
+                  className="object-cover transition-transform duration-300 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-colors duration-300 flex items-end p-3">
-                  <span className="text-xs font-medium text-white/80">
-                    {/* {cert.title} */}
-                  </span>
-                </div>
+                <div className="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-colors duration-300" />
               </motion.button>
             ))}
           </div>
@@ -343,12 +341,16 @@ export function About() {
               <X size={20} />
             </button>
 
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={certificates[lightboxIndex].src}
-              // alt={certificates[lightboxIndex].title}
-              className="w-full rounded-xl max-h-[80vh] object-contain"
-            />
+            <div className="relative w-full max-h-[80vh] min-h-[200px] aspect-video">
+              <Image
+                src={certificates[lightboxIndex].src}
+                alt={`Sertifika ${lightboxIndex + 1}`}
+                fill
+                sizes="(max-width: 768px) 100vw, 768px"
+                className="rounded-xl object-contain"
+                priority
+              />
+            </div>
 
             {/* Prev */}
             <button

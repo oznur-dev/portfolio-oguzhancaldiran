@@ -18,7 +18,7 @@ import {
 
 export function Contact() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.3 });
+  const isInView = useInView(ref, { once: true, amount: 0 });
   const [formData, setFormData] = useState({
     name: "",
     email: "",
